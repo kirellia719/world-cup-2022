@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.worldcup.demo.entity.GroupEntity;
 import com.worldcup.demo.entity.TeamEntity;
+import com.worldcup.demo.model.GroupInfo;
 import com.worldcup.demo.model.TeamInRankGroup;
+import com.worldcup.demo.model.TeamInfo;
 import com.worldcup.demo.repository.GroupRepository;
 import com.worldcup.demo.repository.TeamRepository;
 
@@ -24,7 +26,17 @@ public class GroupService {
     TeamService teamService;
 
     public Object getAllGroup(){
-        return groupRepository.findAll();
+        List<GroupEntity> listGroup = groupRepository.findAll();
+        List<GroupInfo> listGroupInfo = new ArrayList<>();
+        for (GroupEntity group : listGroup){
+            List<TeamEntity> listTeam = teamRepository.findByGroup(group);
+            List<TeamInfo> listTeamInfo = new ArrayList<>();
+            for (TeamEntity teamEntity : listTeam)
+                listTeamInfo.add(new TeamInfo(teamEntity.getName(), teamEntity.getImg()));
+            listGroupInfo.add(new GroupInfo(group.getId(), group.getName(), listTeamInfo));
+        }
+        return listGroupInfo;
+        
     }
 
     public Object getGroupInfo(Integer groupId){

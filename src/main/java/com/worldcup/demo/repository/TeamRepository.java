@@ -14,6 +14,7 @@ public interface TeamRepository extends JpaRepository<TeamEntity, Integer>{
     @Query("SELECT t FROM TeamEntity t ORDER BY t.id")
     List<TeamEntity> findAll();
 
+    @Query("SELECT t FROM TeamEntity t WHERE t.group=?1 ORDER BY t.id")
     List<TeamEntity> findByGroup(GroupEntity groupEntity);
 }
 
