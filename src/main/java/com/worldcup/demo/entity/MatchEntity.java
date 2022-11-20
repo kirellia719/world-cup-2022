@@ -138,7 +138,7 @@ public class MatchEntity {
         String time = this.getTime().toString();
         TeamInfo firstTeamInfo = new TeamInfo(this.firstTeam.getName(), this.firstTeam.getImg());
         TeamInfo secondTeamInfo = new TeamInfo(this.secondTeam.getName(), this.secondTeam.getImg());
-        return new MatchInfo(this.id, group, time, firstTeamInfo, this.firstScore, secondTeamInfo, this.secondScore);
+        return new MatchInfo(this.id, group, time, firstTeamInfo, this.firstScore, secondTeamInfo, this.secondScore, this.status);
     }
     
 }

@@ -1,21 +1,20 @@
 package com.worldcup.demo.model;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class MatchesInDay {
-    LocalDate date;
+    String date;
     List<MatchInfo> listMatch;
     public MatchesInDay() {
     }
-    public MatchesInDay(LocalDate date, List<MatchInfo> listMatch) {
+    public MatchesInDay(String date, List<MatchInfo> listMatch) {
         this.date = date;
         this.listMatch = listMatch;
     }
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
     public List<MatchInfo> getListMatch() {

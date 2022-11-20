@@ -8,12 +8,13 @@ public class MatchInfo {
     Integer firstScore;
     TeamInfo secondTeam;
     Integer secondScore;
+    String status;
 
     public MatchInfo() {
     }
 
     public MatchInfo(Integer id, String group, String time, TeamInfo firstTeam, Integer firstScore, TeamInfo secondTeam,
-            Integer secondScore) {
+            Integer secondScore, String status) {
         this.id = id;
         this.group = group;
         this.time = time;
@@ -21,6 +22,7 @@ public class MatchInfo {
         this.firstScore = firstScore;
         this.secondTeam = secondTeam;
         this.secondScore = secondScore;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -78,7 +80,13 @@ public class MatchInfo {
     public void setSecondScore(Integer secondScore) {
         this.secondScore = secondScore;
     }
-    
-    
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     
 }

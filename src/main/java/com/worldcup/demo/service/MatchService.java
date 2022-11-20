@@ -25,7 +25,34 @@ public class MatchService {
         List<LocalDate> listDate = matchRepository.findDate();
         List<MatchesInDay> matches = new ArrayList<>();
         for (LocalDate date: listDate){
-            matches.add(new MatchesInDay(date, this.getMatchByDay(date)));
+            Integer dayInWeek = date.getDayOfWeek().getValue();
+            String dateString = "";
+            switch (dayInWeek) {
+                case 1:
+                    dateString += "Th 2";
+                    break;
+                case 2:
+                    dateString += "Th 3";
+                    break;
+                case 3:
+                    dateString += "Th 4";
+                    break;
+                case 4:
+                    dateString += "Th 5";
+                    break;
+                case 5:
+                    dateString += "Th 6";
+                    break;
+                case 6:
+                    dateString += "Th 7";
+                    break;
+                default:
+                    dateString += "CN";
+                    break;
+            }
+            dateString += ", " + date.getDayOfMonth() + "/" + date.getMonthValue();
+
+            matches.add(new MatchesInDay(dateString, this.getMatchByDay(date)));
         }
         return matches;
     }
