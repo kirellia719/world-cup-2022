@@ -18,11 +18,12 @@ public class MatchesInDay {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-    public List<MatchInfo> getListmatch() {
+    public List<MatchInfo> getListMatch() {
         return listMatch;
     }
-    public void setListmatch(List<MatchInfo> listMatch) {
+    public void setListMatch(List<MatchInfo> listMatch) {
         this.listMatch = listMatch;
     }
+    
     
 }

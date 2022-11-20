@@ -49,11 +49,11 @@ public class TeamEntity {
         this.name = name;
     }
 
-    public GroupEntity getGroupEntity() {
+    public GroupEntity getGroup() {
         return group;
     }
 
-    public void setGroupEntity(GroupEntity group) {
+    public void setGroup(GroupEntity group) {
         this.group = group;
     }
 
@@ -65,6 +65,5 @@ public class TeamEntity {
         this.img = img;
     }
 
-    
     
 }

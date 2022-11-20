@@ -134,11 +134,11 @@ public class MatchEntity {
     }
 
     public MatchInfo toInfo(){
-        String group = this.getFirstTeam().getGroupEntity().getName();
+        String group = this.getFirstTeam().getGroup().getName();
         String time = this.getTime().toString();
-        TeamInfo firstTeamInfo = new TeamInfo(this.firstTeam.getName(), this.firstTeam.getImg(), firstScore);
-        TeamInfo secondTeamInfo = new TeamInfo(this.secondTeam.getName(), this.secondTeam.getImg(), secondScore);
-        return new MatchInfo(group, time, firstTeamInfo, secondTeamInfo);
+        TeamInfo firstTeamInfo = new TeamInfo(this.firstTeam.getName(), this.firstTeam.getImg());
+        TeamInfo secondTeamInfo = new TeamInfo(this.secondTeam.getName(), this.secondTeam.getImg());
+        return new MatchInfo(this.id, group, time, firstTeamInfo, this.firstScore, secondTeamInfo, this.secondScore);
     }
     
 }
