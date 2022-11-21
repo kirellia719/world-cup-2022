@@ -17,12 +17,17 @@ public class GroupController {
     GroupService groupService;
 
     @GetMapping
-    public Object getAllGroup(){
-        return groupService.getAllGroup();
+    public Object getAllGroupInfo(){
+        return groupService.getAllGroupInfo();
     }
 
     @GetMapping(value = "/{groupId}")
-    public Object getGroupInfo(@PathVariable Integer groupId){
-        return groupService.getGroupInfo(groupId);
+    public Object getGroupRanking(@PathVariable Integer groupId){
+        return groupService.getGroupRanking(groupId);
+    }
+
+    @GetMapping(value = "/rank")
+    public Object getGroupInfo(){
+        return groupService.getAllGroupRanking();
     }
 }
