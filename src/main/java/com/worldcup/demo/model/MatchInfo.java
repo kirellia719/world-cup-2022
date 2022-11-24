@@ -2,7 +2,7 @@ package com.worldcup.demo.model;
 
 public class MatchInfo {
     Integer id;
-    String group;
+    String type;
     String time;
     TeamInfo firstTeam;
     Integer firstScore;
@@ -13,10 +13,10 @@ public class MatchInfo {
     public MatchInfo() {
     }
 
-    public MatchInfo(Integer id, String group, String time, TeamInfo firstTeam, Integer firstScore, TeamInfo secondTeam,
+    public MatchInfo(Integer id, String type, String time, TeamInfo firstTeam, Integer firstScore, TeamInfo secondTeam,
             Integer secondScore, String status) {
         this.id = id;
-        this.group = group;
+        this.type = type;
         this.time = time;
         this.firstTeam = firstTeam;
         this.firstScore = firstScore;
@@ -33,12 +33,12 @@ public class MatchInfo {
         this.id = id;
     }
 
-    public String getGroup() {
-        return group;
+    public String getType() {
+        return type;
     }
 
-    public void setGroup(String group) {
-        this.group = group;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getTime() {

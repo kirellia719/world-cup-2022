@@ -21,12 +21,9 @@ public class MatchService {
     @Autowired
     TeamRepository teamRepository;
 
-    public Object getAllMatch(){
-        List<LocalDate> listDate = matchRepository.findDate();
-        List<MatchesInDay> matches = new ArrayList<>();
-        for (LocalDate date: listDate){
-            Integer dayInWeek = date.getDayOfWeek().getValue();
-            String dateString = "";
+    String dateToString(LocalDate date){
+        Integer dayInWeek = date.getDayOfWeek().getValue();
+        String dateString = "";
             switch (dayInWeek) {
                 case 1:
                     dateString += "Th 2";
@@ -51,14 +48,20 @@ public class MatchService {
                     break;
             }
             dateString += ", " + date.getDayOfMonth() + "/" + date.getMonthValue();
+            return dateString;
+    }
 
-            matches.add(new MatchesInDay(dateString, this.getMatchByDay(date)));
+    public Object getAllMatch(String type){
+        List<LocalDate> listDate = matchRepository.findDate(type);
+        List<MatchesInDay> matches = new ArrayList<>();
+        for (LocalDate date: listDate){
+            matches.add(new MatchesInDay(dateToString(date), this.getMatchByDay(date, type)));
         }
         return matches;
     }
 
-    public List<MatchInfo> getMatchByDay(LocalDate date){
-        List<MatchEntity> listMatchEntities = matchRepository.findByDate(date);
+    public List<MatchInfo> getMatchByDay(LocalDate date, String type){
+        List<MatchEntity> listMatchEntities = matchRepository.findByDate(date, type);
         List<MatchInfo> matchInfos = new ArrayList<>();
         for (MatchEntity matchEntity: listMatchEntities){
             matchInfos.add(matchEntity.toInfo());

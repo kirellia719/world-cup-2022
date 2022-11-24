@@ -15,9 +15,34 @@ public class MatchController {
     @Autowired
     MatchService matchService;
 
-    @GetMapping
-    public Object getAllMatch(){
-        return matchService.getAllMatch();
+    @GetMapping(value = "/group")
+    public Object getAllGroupMatch(){
+        return matchService.getAllMatch("Group");
+    }
+
+    @GetMapping(value = "/round-16")
+    public Object getRound16Match(){
+        return matchService.getAllMatch("1/16");
+    }
+
+    @GetMapping(value = "/qualifier")
+    public Object getQualifierMatch(){
+        return matchService.getAllMatch("Qualifier");
+    }
+
+    @GetMapping(value = "/semifinal")
+    public Object getSemifinalMatch(){
+        return matchService.getAllMatch("Semifinal");
+    }
+
+    @GetMapping(value = "/third-place")
+    public Object getThirdPlaceMatch(){
+        return matchService.getAllMatch("ThirdPlace");
+    }
+
+    @GetMapping(value = "/final")
+    public Object getFinalMatch(){
+        return matchService.getAllMatch("Final");
     }
 
     @GetMapping(value = "/insert")
