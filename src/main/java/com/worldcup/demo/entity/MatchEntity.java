@@ -134,29 +134,29 @@ public class MatchEntity {
     }
 
     public MatchInfo toInfo(){
-        String group = "";
+        String type = "";
         if (this.type.equals("Group")){
-            group = "Bảng " + this.firstTeam.getGroup().getName();
+            type = "Bảng " + this.firstTeam.getGroup().getName();
         }
         else if (this.type.equals("1/16")){
-            group = "Vòng 16 đội";
+            type = "Vòng 16 đội";
         }
         else if (this.type.equals("Qualifier")){
-            group = "Vòng Tứ kết";
+            type = "Vòng Tứ kết";
         }
         else if (this.type.equals("Semifinal")){
-            group = "Vòng Bán kết";
+            type = "Vòng Bán kết";
         }
         else if (this.type.equals("ThirdPlace")){
-            group = "Trận Tranh ba";
+            type = "Trận Tranh ba";
         }
         else if (this.type.equals("Final")){
-            group = "Trận Chung kết";
+            type = "Trận Chung kết";
         }
         String time = this.getTime().toString();
         TeamInfo firstTeamInfo = this.firstTeam==null ? null : new TeamInfo (this.firstTeam.getName(), this.firstTeam.getImg());
         TeamInfo secondTeamInfo = this.secondTeam==null ? null : new TeamInfo(this.secondTeam.getName(), this.secondTeam.getImg());
-        return new MatchInfo(this.id, group, time, firstTeamInfo, this.firstScore, secondTeamInfo, this.secondScore, this.status);
+        return new MatchInfo(this.id, type, time, firstTeamInfo, this.firstScore, secondTeamInfo, this.secondScore, this.status);
     }
     
 }
