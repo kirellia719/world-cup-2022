@@ -15,6 +15,11 @@ public class MatchController {
     @Autowired
     MatchService matchService;
 
+    @GetMapping
+    public Object getAllMatch(){
+        return matchService.getAllMatch();
+    }
+
     @GetMapping(value = "/group")
     public Object getAllGroupMatch(){
         return matchService.getAllMatch("Group");

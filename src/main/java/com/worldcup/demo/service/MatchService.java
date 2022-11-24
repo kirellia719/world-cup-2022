@@ -51,7 +51,18 @@ public class MatchService {
             return dateString;
     }
 
-    public Object getAllMatch(String type){
+    public List<MatchesInDay> getAllMatch(){
+        List<MatchesInDay> allMatches = new ArrayList<>();
+        allMatches.addAll(this.getAllMatch("Group"));
+        allMatches.addAll(this.getAllMatch("1/16"));
+        allMatches.addAll(this.getAllMatch("Qualifier"));
+        allMatches.addAll(this.getAllMatch("Semifinal"));
+        allMatches.addAll(this.getAllMatch("ThirdPlace"));
+        allMatches.addAll(this.getAllMatch("Final"));
+        return allMatches;
+    }
+
+    public List<MatchesInDay> getAllMatch(String type){
         List<LocalDate> listDate = matchRepository.findDate(type);
         List<MatchesInDay> matches = new ArrayList<>();
         for (LocalDate date: listDate){
