@@ -15,6 +15,9 @@ public interface MatchRepository extends JpaRepository<MatchEntity, Integer>{
     @Query("SELECT m FROM MatchEntity m WHERE m.date=?1 AND m.type=?2 ORDER BY m.id")
     List<MatchEntity> findByDate(LocalDate date, String type);
 
+    @Query("SELECT m FROM MatchEntity m WHERE m.type=?1 ORDER BY m.id")
+    List<MatchEntity> findByType(String type);
+
     @Query("SELECT DISTINCT m.date FROM MatchEntity m WHERE m.type=?1 ORDER BY m.date")
     List<LocalDate> findDate(String type);
 

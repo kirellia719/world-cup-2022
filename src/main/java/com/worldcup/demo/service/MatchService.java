@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.worldcup.demo.converter.Converter;
 import com.worldcup.demo.entity.MatchEntity;
 import com.worldcup.demo.model.MatchInfo;
 import com.worldcup.demo.model.MatchesInDay;
@@ -21,52 +22,23 @@ public class MatchService {
     @Autowired
     TeamRepository teamRepository;
 
-    String dateToString(LocalDate date){
-        Integer dayInWeek = date.getDayOfWeek().getValue();
-        String dateString = "";
-            switch (dayInWeek) {
-                case 1:
-                    dateString += "Th 2";
-                    break;
-                case 2:
-                    dateString += "Th 3";
-                    break;
-                case 3:
-                    dateString += "Th 4";
-                    break;
-                case 4:
-                    dateString += "Th 5";
-                    break;
-                case 5:
-                    dateString += "Th 6";
-                    break;
-                case 6:
-                    dateString += "Th 7";
-                    break;
-                default:
-                    dateString += "CN";
-                    break;
-            }
-            dateString += ", " + date.getDayOfMonth() + "/" + date.getMonthValue();
-            return dateString;
-    }
 
     public List<MatchesInDay> getAllMatch(){
         List<MatchesInDay> allMatches = new ArrayList<>();
-        allMatches.addAll(this.getAllMatch("Group"));
-        allMatches.addAll(this.getAllMatch("1/16"));
-        allMatches.addAll(this.getAllMatch("Qualifier"));
-        allMatches.addAll(this.getAllMatch("Semifinal"));
-        allMatches.addAll(this.getAllMatch("ThirdPlace"));
-        allMatches.addAll(this.getAllMatch("Final"));
+        allMatches.addAll(this.getAllMatchByType("Group"));
+        allMatches.addAll(this.getAllMatchByType("Round16"));
+        allMatches.addAll(this.getAllMatchByType("Qualifier"));
+        allMatches.addAll(this.getAllMatchByType("Semifinal"));
+        allMatches.addAll(this.getAllMatchByType("ThirdPlace"));
+        allMatches.addAll(this.getAllMatchByType("Final"));
         return allMatches;
     }
 
-    public List<MatchesInDay> getAllMatch(String type){
+    public List<MatchesInDay> getAllMatchByType(String type){
         List<LocalDate> listDate = matchRepository.findDate(type);
         List<MatchesInDay> matches = new ArrayList<>();
         for (LocalDate date: listDate){
-            matches.add(new MatchesInDay(dateToString(date), this.getMatchByDay(date, type)));
+            matches.add(new MatchesInDay(Converter.dateToString(date), this.getMatchByDay(date, type)));
         }
         return matches;
     }
@@ -78,6 +50,19 @@ public class MatchService {
             matchInfos.add(matchEntity.toInfo());
         }
         return matchInfos;
+    }
+
+    public Object getPlayInMatch(){
+        return null;
+    }
+
+    public Object getPlayInMatchByType(String type){
+        List<MatchEntity> listMatchEntity = matchRepository.findByType(type);
+        List<MatchInfo> listMatchInfo = new ArrayList<>();
+        for (MatchEntity matchEntity: listMatchEntity){
+            listMatchInfo.add(matchEntity.toInfo());
+        }
+        return listMatchInfo;
     }
 
     public Object insertMatch(){

@@ -3,6 +3,7 @@ package com.worldcup.demo.model;
 public class MatchInfo {
     Integer id;
     String type;
+    String date;
     String time;
     TeamInfo firstTeam;
     Integer firstScore;
@@ -13,10 +14,11 @@ public class MatchInfo {
     public MatchInfo() {
     }
 
-    public MatchInfo(Integer id, String type, String time, TeamInfo firstTeam, Integer firstScore, TeamInfo secondTeam,
+    public MatchInfo(Integer id, String type, String date, String time, TeamInfo firstTeam, Integer firstScore, TeamInfo secondTeam,
             Integer secondScore, String status) {
         this.id = id;
         this.type = type;
+        this.date = date;
         this.time = time;
         this.firstTeam = firstTeam;
         this.firstScore = firstScore;
@@ -87,6 +89,14 @@ public class MatchInfo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
     
 }

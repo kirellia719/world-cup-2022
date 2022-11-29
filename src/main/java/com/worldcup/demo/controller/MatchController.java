@@ -22,32 +22,32 @@ public class MatchController {
 
     @GetMapping(value = "/group")
     public Object getAllGroupMatch(){
-        return matchService.getAllMatch("Group");
+        return matchService.getAllMatchByType("Group");
     }
 
     @GetMapping(value = "/round-16")
     public Object getRound16Match(){
-        return matchService.getAllMatch("1/16");
+        return matchService.getPlayInMatchByType("Round16");
     }
 
     @GetMapping(value = "/qualifier")
     public Object getQualifierMatch(){
-        return matchService.getAllMatch("Qualifier");
+        return matchService.getPlayInMatchByType("Qualifier");
     }
 
     @GetMapping(value = "/semifinal")
     public Object getSemifinalMatch(){
-        return matchService.getAllMatch("Semifinal");
+        return matchService.getPlayInMatchByType("Semifinal");
     }
 
     @GetMapping(value = "/third-place")
     public Object getThirdPlaceMatch(){
-        return matchService.getAllMatch("ThirdPlace");
+        return matchService.getPlayInMatchByType("ThirdPlace");
     }
 
     @GetMapping(value = "/final")
     public Object getFinalMatch(){
-        return matchService.getAllMatch("Final");
+        return matchService.getPlayInMatchByType("Final");
     }
 
     @GetMapping(value = "/insert")

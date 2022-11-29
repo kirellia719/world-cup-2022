@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.worldcup.demo.converter.Converter;
 import com.worldcup.demo.model.MatchInfo;
 import com.worldcup.demo.model.TeamInfo;
 
@@ -138,7 +139,7 @@ public class MatchEntity {
         if (this.type.equals("Group")){
             type = "Bảng " + this.firstTeam.getGroup().getName();
         }
-        else if (this.type.equals("1/16")){
+        else if (this.type.equals("Round16")){
             type = "Vòng 16 đội";
         }
         else if (this.type.equals("Qualifier")){
@@ -156,7 +157,7 @@ public class MatchEntity {
         String time = this.getTime().toString();
         TeamInfo firstTeamInfo = this.firstTeam==null ? null : new TeamInfo (this.firstTeam.getName(), this.firstTeam.getImg());
         TeamInfo secondTeamInfo = this.secondTeam==null ? null : new TeamInfo(this.secondTeam.getName(), this.secondTeam.getImg());
-        return new MatchInfo(this.id, type, time, firstTeamInfo, this.firstScore, secondTeamInfo, this.secondScore, this.status);
+        return new MatchInfo(this.id, type, Converter.dateToString(this.date), time, firstTeamInfo, this.firstScore, secondTeamInfo, this.secondScore, this.status);
     }
     
 }
